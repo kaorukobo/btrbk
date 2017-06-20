@@ -1827,6 +1827,7 @@ sub vinfo_rsh($;@)
   my $ssh_compression = config_key($config, "ssh_compression");
   my $ssh_cipher_spec = config_key($config, "ssh_cipher_spec") // "default";
   my @ssh_options;
+  push(@ssh_options, '-q')   // Dont capture ssh warnings;
   push(@ssh_options, '-p', $ssh_port) if($ssh_port ne "default");
   push(@ssh_options, '-c', $ssh_cipher_spec) if($ssh_cipher_spec ne "default");
   if($ssh_identity) {
